@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projects</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="accessibility.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="accessibility.js" defer></script>
     <style>
         body {
+            /* Keep body copy readable against the black page background. */
             background-color: #000000;
             color: #ffffff;
         }
 
         .project-card {
+            /* Separate project panels from the page without sacrificing text contrast. */
             background-color: #171717;
             border-color: #444444;
             color: #ffffff;
@@ -21,40 +25,59 @@
 
         .project-link,
         .github-link {
+            /* This light teal stays legible on both the black page and dark panels. */
             color: #9de1dc;
+            text-decoration-thickness: 0.12em;
+            text-underline-offset: 0.2em;
+        }
+
+        a:focus-visible {
+            /* Make keyboard focus distinct from the link's color and underline. */
+            outline: 3px solid #ffbf47;
+            outline-offset: 4px;
         }
     </style>
 </head>
 <body>
+    <a class="a11y-skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- The shared navigation is loaded here before the main content landmark. -->
     <div id="nav-placeholder"></div>
     <script>
         $("#nav-placeholder").load("navbar.html #site-nav");
     </script>
 
-    <main class="container py-4">
+    <!-- This main landmark is the destination for the skip link. -->
+    <main id="main-content" class="container py-4" tabindex="-1">
         <h1 class="mb-4">Projects</h1>
+        <!-- Bootstrap keeps these cards side by side on wider screens and stacked on mobile. -->
         <div class="row g-4">
             <div class="col-12 col-md-6">
-                <section class="card project-card h-100">
+                <!-- Each project section is programmatically named by its visible heading. -->
+                <section class="card project-card h-100" aria-labelledby="grade-calculator-title">
                     <div class="card-body d-flex flex-column">
-                        <h2 class="h4 card-title">Grade Calculator</h2>
+                        <h2 class="h4 card-title" id="grade-calculator-title">Grade Calculator</h2>
                         <p class="card-text">Written in Java for Eclipse, this program asks for the student's name and grades in class participation, guided explorations, quizzes, projects, and the final demonstration. It applies weights of 15%, 20%, 25%, 20%, and 20% to those categories, adds the weighted scores, and assigns a letter grade from the resulting course score.</p>
-                        <a class="project-link mt-auto" href="https://github.com/giorgiopetit/CSJavaRepo/blob/main/Ecplise%20Workspace/CS1050M02project/GEM01GradeCalculations.java" target="_blank" rel="noopener noreferrer">Grade Calculator</a>
+                        <!-- The accessible name explains that this source link opens a new tab. -->
+                        <a class="project-link mt-auto" href="https://github.com/giorgiopetit/CSJavaRepo/blob/main/Ecplise%20Workspace/CS1050M02project/GEM01GradeCalculations.java" target="_blank" rel="noopener noreferrer" aria-label="Grade Calculator source code (opens in a new tab)">Grade Calculator</a>
                     </div>
                 </section>
             </div>
             <div class="col-12 col-md-6">
-                <section class="card project-card h-100">
+                <!-- The heading association gives this project section a useful accessible name. -->
+                <section class="card project-card h-100" aria-labelledby="concert-ticket-title">
                     <div class="card-body d-flex flex-column">
-                        <h2 class="h4 card-title">Concert Ticket Pricing</h2>
+                        <h2 class="h4 card-title" id="concert-ticket-title">Concert Ticket Pricing</h2>
                         <p class="card-text">This Java program asks the user to choose a concert section (Front, Center, Side, or Upper) and enter a row from 1 to 60. It accepts uppercase or lowercase section letters, rejects invalid sections or rows, and calculates the ticket price by row: $450 for rows 1-15, $300 for rows 16-30, and $200 for rows 31-60.</p>
-                        <a class="project-link mt-auto" href="https://github.com/giorgiopetit/CSJavaRepo/blob/main/Ecplise%20Workspace/CS1050M02project/ConcertTickets.java" target="_blank" rel="noopener noreferrer">Concert Ticket Pricing</a>
+                        <!-- The accessible name identifies both the destination and new-tab behavior. -->
+                        <a class="project-link mt-auto" href="https://github.com/giorgiopetit/CSJavaRepo/blob/main/Ecplise%20Workspace/CS1050M02project/ConcertTickets.java" target="_blank" rel="noopener noreferrer" aria-label="Concert Ticket Pricing source code (opens in a new tab)">Concert Ticket Pricing</a>
                     </div>
                 </section>
             </div>
         </div>
         <p class="text-center mt-4">
-            <a class="github-link" href="https://github.com/giorgiopetit" target="_blank" rel="noopener noreferrer">My GitHub</a>
+            <!-- Keep one repository link after both projects to avoid duplicate navigation. -->
+            <a class="github-link" href="https://github.com/giorgiopetit" target="_blank" rel="noopener noreferrer" aria-label="My GitHub profile (opens in a new tab)">My GitHub</a>
         </p>
     </main>
 </body>

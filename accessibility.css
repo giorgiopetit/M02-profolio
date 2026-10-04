@@ -1,0 +1,98 @@
+.a11y-skip-link {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    z-index: 1100;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-150%);
+}
+
+.a11y-skip-link:focus {
+    transform: translateY(1rem);
+}
+
+body :focus-visible {
+    outline: 3px solid #ffbf47;
+    outline-offset: 4px;
+}
+
+.accessibility-tools {
+    position: relative;
+    z-index: 1050;
+    width: min(100% - 2rem, 72rem);
+    margin: 0.75rem auto;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.accessibility-tools button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    background: #111111;
+    color: #ffffff;
+    font: inherit;
+}
+
+.accessibility-tools button:hover,
+.accessibility-tools button[aria-pressed="true"] {
+    background: #ffffff;
+    color: #000000;
+}
+
+.accessibility-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid #ffffff;
+    background: #111111;
+}
+
+.accessibility-panel[hidden] {
+    display: none;
+}
+
+.accessibility-panel p {
+    margin: 0;
+}
+
+.accessibility-panel [role="group"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+html[data-high-contrast="true"] body,
+html[data-high-contrast="true"] body * {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+html[data-high-contrast="true"] body a {
+    color: #ffff00 !important;
+    text-decoration: underline !important;
+}
+
+html[data-high-contrast="true"] body :focus-visible {
+    outline-color: #ffff00;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
