@@ -8,7 +8,6 @@
   <link href="accessibility.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="accessibility.js" defer></script>
   <style>
     body {
       margin: 0;
@@ -86,6 +85,24 @@
   <script>
     $("#nav-placeholder").load("navbar.html #site-nav");
   </script>
+  <details class="accessibility-tools">
+    <summary>Accessibility options</summary>
+    <div class="accessibility-panel">
+      <fieldset>
+        <legend>Text size</legend>
+        <input class="visually-hidden" type="radio" name="text-size" id="text-size-small" value="small">
+        <label for="text-size-small">Smaller</label>
+        <input class="visually-hidden" type="radio" name="text-size" id="text-size-default" value="default" checked>
+        <label for="text-size-default">Default</label>
+        <input class="visually-hidden" type="radio" name="text-size" id="text-size-large" value="large">
+        <label for="text-size-large">Larger</label>
+      </fieldset>
+      <div>
+        <input class="visually-hidden" type="checkbox" id="high-contrast">
+        <label for="high-contrast">High contrast</label>
+      </div>
+    </div>
+  </details>
 
   <header class="container page-header">
     <h1>Hello, my name is Giorgio</h1>

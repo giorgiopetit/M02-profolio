@@ -27,7 +27,8 @@ body :focus-visible {
     font-size: 1rem;
 }
 
-.accessibility-tools button {
+.accessibility-tools summary {
+    width: fit-content;
     min-width: 44px;
     min-height: 44px;
     padding: 0.5rem 0.75rem;
@@ -35,11 +36,11 @@ body :focus-visible {
     border-radius: 4px;
     background: #111111;
     color: #ffffff;
-    font: inherit;
+    cursor: pointer;
 }
 
-.accessibility-tools button:hover,
-.accessibility-tools button[aria-pressed="true"] {
+.accessibility-tools summary:hover,
+.accessibility-panel input:checked + label {
     background: #ffffff;
     color: #000000;
 }
@@ -55,35 +56,72 @@ body :focus-visible {
     background: #111111;
 }
 
-.accessibility-panel[hidden] {
-    display: none;
-}
-
-.accessibility-panel p {
-    margin: 0;
-}
-
-.accessibility-panel [role="group"] {
+.accessibility-panel fieldset {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.5rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
-html[data-high-contrast="true"] body,
-html[data-high-contrast="true"] body * {
+.accessibility-panel legend {
+    float: left;
+    width: auto;
+    margin: 0;
+    font-weight: bold;
+}
+
+.accessibility-panel label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    background: #111111;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.accessibility-panel input:focus-visible + label {
+    outline: 3px solid #ffbf47;
+    outline-offset: 4px;
+}
+
+html:has(#high-contrast:checked) {
+    color-scheme: dark;
+}
+
+html:has(#high-contrast:checked) body,
+html:has(#high-contrast:checked) body * {
     background-color: #000000 !important;
     color: #ffffff !important;
     border-color: #ffffff !important;
     box-shadow: none !important;
 }
 
-html[data-high-contrast="true"] body a {
+html:has(#high-contrast:checked) body a {
     color: #ffff00 !important;
     text-decoration: underline !important;
 }
 
-html[data-high-contrast="true"] body :focus-visible {
+html:has(#high-contrast:checked) body :focus-visible {
     outline-color: #ffff00;
+}
+
+html:has(#text-size-small:checked) {
+    font-size: 14px;
+}
+
+html:has(#text-size-default:checked) {
+    font-size: 16px;
+}
+
+html:has(#text-size-large:checked) {
+    font-size: 20px;
 }
 
 @media (prefers-reduced-motion: reduce) {
